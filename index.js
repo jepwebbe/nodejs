@@ -6,15 +6,15 @@ import express from 'express';
     response.write('Yes No Hello World!');
     response.end();
 }).listen(4000) */
-// const express = ('express');
 const app = express();
-app.listen(4242, () => {
-    console.log("Express server is running")
-})
+const PORT = process.env.PORT || 3001;
+
 app.get("/", (req, res) => {
     res.send("Velkommen på forsiden")
 });
-
+  app.get("/api", (req, res) => {
+    res.json({ message: "Hello from Express!" });
+  });
 app.get("/skills", (req, res) => {
     res.send("Hvad kan vi? Se her!")
 });
@@ -38,3 +38,6 @@ app.get("/*", (req, res) => {
 /* app.use((req, res, next) => {
     res.status(404).send("Page not found <br /> ¯\_(ツ)_/¯")
 }); */
+app.listen(PORT, () => {
+    console.log(`Express server listening on ${PORT}`);
+})
